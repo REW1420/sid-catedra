@@ -12,7 +12,7 @@ class Nvar extends Component {
         cookies.remove('user', {path: "/"});
         cookies.remove('email', {path: "/"});
         
-        window.location.href='./';
+        window.location.href='/exp-udb-libreria/';
     }
 
     
@@ -26,14 +26,14 @@ class Nvar extends Component {
     <div className="collapse navbar-collapse" id="navbarNav">
     <ul className="navbar-nav">
         <li className="nav-item">
-        <a className="nav-link active" aria-current="page"  href="/lista">Registro de libros</a>
+        <a className="nav-link active" aria-current="page"  href="/exp-udb-libreria/lista">Registro de libros</a>
         </li>
         <li className="nav-item">
-        <a className="nav-link" aria-current="page" href={'/registro-libros-deseados'}>Libros deseados</a>
+        <a className="nav-link" aria-current="page" href={'/exp-udb-libreria/registro-libros-deseados'}>Libros deseados</a>
         </li>
 
         <li className="nav-item">
-        <a className="nav-link" aria-current="page" href={'/filtro-libros'}>Filtrar libros</a>
+        <a className="nav-link" aria-current="page" href={'/exp-udb-libreria/filtro-libros'}>Filtrar libros</a>
         </li>
         
     </ul>

@@ -61,12 +61,12 @@ export default function Registro() {
                 password: password2   
             }   
         )
-    }).then((res)=>res.json()).then((resJson)=>alert(resJson.message)).then(()=>window.location.href="./");} }>Registrarse</button>
+    }).then((res)=>res.json()).then((resJson)=>alert(resJson.message)).then(()=>window.location.href="/exp-udb-libreria/");} }>Registrarse</button>
             
         
          
             <div id="formFooter">
-              <a class="underlineHover" href={"/"}>iniciar sesion</a>
+              <a class="underlineHover" href={"/exp-udb-libreria/"}>iniciar sesion</a>
             </div>
         
           </div>
