@@ -20,11 +20,11 @@ root.render(
 <Nvar></Nvar>
 <Routes>
 
-<Route path="/exp-udb-libreria/" element={<Login/>}/>
-<Route path="/exp-udb-libreria/registro" element={<Registro/>}/>
-<Route path="/exp-udb-libreria/lista" element={<ListaLibros/>}/>
-<Route path="/exp-udb-libreria/registro-libros-deseados" element={<ListaLibrosDeseados/>}/>
-<Route path="/exp-udb-libreria/filtro-libros" element={<BusquedaLibros/>}/>
+<Route path="/" element={<Login/>}/>
+<Route path="/registro" element={<Registro/>}/>
+<Route path="/lista" element={<ListaLibros/>}/>
+<Route path="/registro-libros-deseados" element={<ListaLibrosDeseados/>}/>
+<Route path="/filtro-libros" element={<BusquedaLibros/>}/>
 
   
 </Routes>

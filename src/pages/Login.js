@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import Cookies from 'universal-cookie'
-import { Link } from "react-router-dom";
+
 import '../css/basicDesing.css'
 
 const baseURL = 'https://api-library-service.herokuapp.com/api/registry'
@@ -29,7 +29,7 @@ class Login extends Component {
     }
 
     registrarse(){
-        window.location.href="/exp-udb-libreria/registro"
+        window.location.href="./registro"
     }
 
 
@@ -61,7 +61,7 @@ class Login extends Component {
 
     componentDidMount() {
         if(cookies.get('user')){
-            window.location.href="/exp-udb-libreria/lista";
+            window.location.href="./lista";
         }
     }
 
@@ -84,7 +84,7 @@ class Login extends Component {
            
            
               <div id="formFooter">
-                <a className="underlineHover" href='/registro'>Registrarse</a>
+                <a className="underlineHover" href='./registro'>Registrarse</a>
               </div>
           
             </div>
