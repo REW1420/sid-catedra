@@ -2,6 +2,9 @@
   "name": "libreria",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.17.0"
+  },
   "dependencies": {
     "@emotion/styled": "^11.10.4",
     "@material-ui/core": "^4.12.4",
