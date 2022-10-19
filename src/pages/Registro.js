@@ -17,7 +17,7 @@ export default function Registro() {
     
     
     
-    var url='http://api-library-service.herokuapp.com/api/registry';
+    var url='https://api-library-service.herokuapp.com/api/registry';
     const [data, setData] = useState([]);
     fetch(url).then((res)=>res.json()).then((resJson)=>setData(resJson));
     

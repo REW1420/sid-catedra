@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie'
 import { Link } from "react-router-dom";
 import '../css/basicDesing.css'
 
-const baseURL = 'http://api-library-service.herokuapp.com/api/registry'
+const baseURL = 'https://api-library-service.herokuapp.com/api/registry'
 const cookies = new Cookies()
 
 
@@ -84,7 +84,7 @@ class Login extends Component {
            
            
               <div id="formFooter">
-                <Link className="underlineHover" to='./registro'>Registrarse</Link>
+                <Link className="underlineHover" to='/registro'>Registrarse</Link>
               </div>
           
             </div>
