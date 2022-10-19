@@ -66,7 +66,7 @@ export default function Registro() {
         
          
             <div id="formFooter">
-              <Link class="underlineHover" to={"./"}>iniciar sesion</Link>
+              <a class="underlineHover" href={"/"}>iniciar sesion</a>
             </div>
         
           </div>

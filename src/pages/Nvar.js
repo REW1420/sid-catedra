@@ -26,14 +26,14 @@ class Nvar extends Component {
     <div className="collapse navbar-collapse" id="navbarNav">
     <ul className="navbar-nav">
         <li className="nav-item">
-        <Link className="nav-link active" aria-current="page"  to={"/lista"}>Registro de libros</Link>
+        <a className="nav-link active" aria-current="page"  href="/lista">Registro de libros</a>
         </li>
         <li className="nav-item">
-        <Link className="nav-link" aria-current="page" to={'/registro-libros-deseados'}>Libros deseados</Link>
+        <a className="nav-link" aria-current="page" href={'/registro-libros-deseados'}>Libros deseados</a>
         </li>
 
         <li className="nav-item">
-        <Link className="nav-link" aria-current="page" to={'/filtro-libros'}>Filtrar libros</Link>
+        <a className="nav-link" aria-current="page" href={'/filtro-libros'}>Filtrar libros</a>
         </li>
         
     </ul>
