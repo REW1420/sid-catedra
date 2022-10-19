@@ -29,7 +29,7 @@ class Login extends Component {
     }
 
     registrarse(){
-        window.location.href="./registro"
+        window.location.href="/registro"
     }
 
 
@@ -61,7 +61,7 @@ class Login extends Component {
 
     componentDidMount() {
         if(cookies.get('user')){
-            window.location.href="./libros-registro";
+            window.location.href="/lista";
         }
     }
 
