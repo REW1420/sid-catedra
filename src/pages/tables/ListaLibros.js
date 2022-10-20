@@ -35,12 +35,35 @@ const styles= useStyles();
   const [modalEliminar, setModalEliminar]=useState(false);
 
   const [selectedBook, setSelectedBook]=useState({
+
+    
     name: '',
     author:'',
     pages: '',
+    genre: ''
     
   })
+  ////////////////////////////
+  
+  var url='https://api-library-service.herokuapp.com/api/book';
+  const [dataID, setDataID] = useState([]);//los corchetes son para especificar que la variable "data" va a recibir un objeto
+    //constante con hook para capturar los datos de la petición fetch
+    fetch(url)
+    .then((res)=>res.json()).then((resJson)=>setDataID(resJson));
+    var lastID;
+    dataID.map((book,i) =>{
+      lastID=book.id
+    }
+    );
 
+    
+  const [name,setName]=useState("");
+  const [author,setAuthor]=useState("");
+  const [pages,setPages]=useState("");
+  const [genre,setGenre]=useState("");
+  
+
+  ///////////////////////
   const handleChange=e=>{
     const {name, value}=e.target;
     setSelectedBook(prevState=>({
@@ -114,15 +137,31 @@ const styles= useStyles();
   const bodyInsertar=(
     <div className={styles.modal}>
       <h3>Agregar nuevo libro deseado</h3>
-      <TextField name="author" className={styles.inputMaterial} label="Autor" onChange={handleChange}/>
+      <TextField name="author" className={styles.inputMaterial} label="Autor" onChange={(e) => setAuthor(e.target.value)}/>
       <br />
-      <TextField name="name" className={styles.inputMaterial} label="Titulo" onChange={handleChange}/>
+      <TextField name="name" className={styles.inputMaterial} label="Titulo" onChange={(e) => setName(e.target.value)}/>
       <br />
-      <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={handleChange}/>
+      <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={(e) => setPages(e.target.value)}/>
       <br />
+      <TextField name="genre" className={styles.inputMaterial} label="Paginas" onChange={(e) => setGenre(e.target.value)}/>
       <br /><br />
       <div align="right">
-        <Button color="primary" onClick={()=>peticionPost()}>Insertar</Button>
+        <Button color="primary" onClick={()=>{
+          fetch(url,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(
+                {
+                    id: (parseInt(lastID)+1).toString(),
+                    name: name,
+                    author: author,
+                    pages: pages,
+                    genre: genre   
+                }   
+            )
+        }).then((res)=>res.json()).then(abrirCerrarModalInsertar());}} >Insertar</Button>
         <Button onClick={()=>abrirCerrarModalInsertar()}>Cancelar</Button>
       </div>
     </div>
@@ -148,7 +187,7 @@ const styles= useStyles();
 
   const bodyEliminar=(
     <div className={styles.modal}>
-      <p>Estás seguro que deseas eliminar la consola <b>{selectedBook && selectedBook.name}</b> ? </p>
+      <p>Estás seguro que deseas eliminar el libro <b>{selectedBook && selectedBook.name}</b> ? </p>
       <div align="right">
         <Button color="secondary" onClick={()=>peticionDelete()} >Sí</Button>
         <Button onClick={()=>abrirCerrarModalEliminar()}>No</Button>
@@ -172,6 +211,7 @@ const styles= useStyles();
              <TableCell>Titulo</TableCell>
              <TableCell>Autor</TableCell>
              <TableCell>Paginas</TableCell>
+             <TableCell>Genero</TableCell>
              <TableCell>Opciones</TableCell>
 
            </TableRow>
@@ -184,6 +224,7 @@ const styles= useStyles();
                <TableCell>{bookW.name}</TableCell>
                <TableCell>{bookW.author}</TableCell>
                <TableCell>{bookW.pages}</TableCell>
+               <TableCell>{bookW.genry}</TableCell>
              
                <TableCell>
                  <Edit className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Editar')}/>

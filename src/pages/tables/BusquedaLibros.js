@@ -23,7 +23,7 @@ useEffect( ()=>{
 // Definimos las columns
 const columns = [
     {
-        name: "id",
+        name: "_id",
         label: "ID"
     },
     {

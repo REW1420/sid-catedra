@@ -33,6 +33,10 @@ class Nvar extends Component {
         </li>
 
         <li className="nav-item">
+        <a className="nav-link" aria-current="page" href={'./autores'}>Autores</a>
+        </li>
+
+        <li className="nav-item">
         <a className="nav-link" aria-current="page" href={'./filtro-libros'}>Filtrar libros</a>
         </li>
         
