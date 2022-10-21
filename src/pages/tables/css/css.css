@@ -1,0 +1,31 @@
+.tablas-udb{
+    padding-top: 100px;
+}
+
+.body{
+
+    background-color: #FDF9EC;
+
+}
+.root{
+
+    background-color: #FDF9EC;
+
+}
+
+.botonAgregar{
+    border: solid 1px black !important;
+    
+}
+
+.botonAgregar:hover{
+    background-color: aliceblue !important;
+    color: black !important;
+    
+}
+.tablasColor{
+    background-color: white !important;
+    border: solid 1px white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

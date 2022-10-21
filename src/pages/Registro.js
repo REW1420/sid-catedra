@@ -30,7 +30,7 @@ export default function Registro() {
    
         return (
            
-         
+         <body className='body'>
           <div className="wrapper fadeInDown">
           <div id="formContent">
           
@@ -70,7 +70,7 @@ export default function Registro() {
         
           </div>
         </div>
-                
+        </body>
 
         );
     }

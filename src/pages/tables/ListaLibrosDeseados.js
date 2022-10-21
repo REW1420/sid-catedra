@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-
+import './css/css.css'
 import axios from 'axios';
 import {makeStyles} from '@material-ui/core/styles';
 import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow, Modal, Button, TextField} from '@material-ui/core';
@@ -209,10 +209,15 @@ function ListaLibrosDeseados() {
 
 
   return (
-    <div className="container">
+
+<body className='body '>
+
+    <div className="container tablas-udb ">
       <br />
-    <Button className='btn-primary' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo libro deseado</Button>
+    <Button className='btn-primary botonAgregar' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo libro deseado</Button>
       <br /><br />
+
+      <div className='tablasColor'>
      <TableContainer>
        <Table>
          <TableHead>
@@ -246,6 +251,7 @@ function ListaLibrosDeseados() {
          </TableBody>
        </Table>
      </TableContainer>
+     </div>
      
      <Modal
      open={modalInsertar}
@@ -265,6 +271,8 @@ function ListaLibrosDeseados() {
         {bodyEliminar}
      </Modal>
     </div>
+
+    </body>
   );
 }
 

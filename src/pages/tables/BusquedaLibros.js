@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
 import axios from "axios";
+import './css/css.css'
 
 export const BusquedaLibros = () => {
 // configuramos Los hooks
@@ -23,7 +24,7 @@ useEffect( ()=>{
 // Definimos las columns
 const columns = [
     {
-        name: "_id",
+        name: "id",
         label: "ID"
     },
     {
@@ -34,20 +35,27 @@ const columns = [
         name: "author",
         label: "Autor"
     },
+    
     {
         name: "pages",
         label: "Paginas"
+    },
+    {
+        name:'genre',
+        label: "Genero"
     }
 ]
 // renderizamos la datatable
         return (
-            <div className="container my-5">
+            <body className="body">
+            <div className="container my-5 tablas-udb">
             <MUIDataTable 
             title={"Busqueda de libros"}
             data={books}
             columns={columns}
             />
             </div>
+            </body>
         )
 
 }

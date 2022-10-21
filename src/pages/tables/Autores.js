@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-
+import './css/css.css'
 import axios from 'axios';
 import {makeStyles} from '@material-ui/core/styles';
 import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow, Modal, Button, TextField} from '@material-ui/core';
@@ -210,10 +210,13 @@ const styles= useStyles();
 
 
   return (
-    <div className="container">
+
+    <body className='body'>
+    <div className="container tablas-udb ">
       <br />
-    <Button className='btn-primary' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo autor</Button>
+    <Button className='btn-primary botonAgregar' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo autor</Button>
       <br /><br />
+      <div className='tablasColor'>
      <TableContainer>
        <Table>
          <TableHead>
@@ -246,7 +249,7 @@ const styles= useStyles();
          </TableBody>
        </Table>
      </TableContainer>
-     
+     </div>
      <Modal
      open={modalInsertar}
      onClose={abrirCerrarModalInsertar}>
@@ -265,6 +268,7 @@ const styles= useStyles();
         {bodyEliminar}
      </Modal>
     </div>
+    </body>
   );
 }
 

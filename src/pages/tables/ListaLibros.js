@@ -1,13 +1,19 @@
 import React, {useEffect, useState} from 'react';
 
+import './css/css.css'
 import axios from 'axios';
 import {makeStyles} from '@material-ui/core/styles';
 import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow, Modal, Button, TextField} from '@material-ui/core';
 import {Edit, Delete} from '@material-ui/icons';
+import { textAlign } from '@mui/system';
+
 
 const baseUrl='https://api-library-service.herokuapp.com/api/book'
 
 const useStyles = makeStyles((theme) => ({
+
+ 
+
   modal: {
     position: 'absolute',
     width: 400,
@@ -20,10 +26,13 @@ const useStyles = makeStyles((theme) => ({
     transform: 'translate(-50%, -50%)'
   },
   iconos:{
-    cursor: 'pointer'
+    cursor: 'pointer',
+   
+    
   }, 
   inputMaterial:{
-    width: '100%'
+    width: '100%',
+    textAlign: 'center'
   }
 }));
 
@@ -136,7 +145,7 @@ const styles= useStyles();
 
   const bodyInsertar=(
     <div className={styles.modal}>
-      <h3>Agregar nuevo libro deseado</h3>
+      <h3 >Agregar nuevo libro</h3>
       <TextField name="author" className={styles.inputMaterial} label="Autor" onChange={(e) => setAuthor(e.target.value)}/>
       <br />
       <TextField name="name" className={styles.inputMaterial} label="Titulo" onChange={(e) => setName(e.target.value)}/>
@@ -199,63 +208,72 @@ const styles= useStyles();
 
 
   return (
-    <div className="container">
+    <body className='body' >
+    <div className="container tablas-udb">
       <br />
-    <Button className='btn-primary' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo libro</Button>
+      <Button className='btn-primary botonAgregar' onClick={() => abrirCerrarModalInsertar()}>Registrar nuevo libro</Button>
       <br /><br />
-     <TableContainer>
-       <Table>
-         <TableHead>
-           <TableRow>
-             <TableCell>ID</TableCell>
-             <TableCell>Titulo</TableCell>
-             <TableCell>Autor</TableCell>
-             <TableCell>Paginas</TableCell>
-             <TableCell>Genero</TableCell>
-             <TableCell>Opciones</TableCell>
 
-           </TableRow>
-         </TableHead>
+      <div className='tablasColor'>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Titulo</TableCell>
+              <TableCell>Autor</TableCell>
+              <TableCell>Paginas</TableCell>
+              <TableCell>Genero</TableCell>
+              <TableCell>Opciones</TableCell>
 
-         <TableBody>
-           {data.map(bookW=>(
-             <TableRow key={bookW.id}>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {data.map(bookW => (
+              <TableRow key={bookW.id}>
                 <TableCell>{bookW.id}</TableCell>
-               <TableCell>{bookW.name}</TableCell>
-               <TableCell>{bookW.author}</TableCell>
-               <TableCell>{bookW.pages}</TableCell>
-               <TableCell>{bookW.genry}</TableCell>
-             
-               <TableCell>
-                 <Edit className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Editar')}/>
-                 &nbsp;&nbsp;&nbsp;
-                 <Delete  className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Eliminar')}/>
-                 </TableCell>
-             </TableRow>
-           ))}
-         </TableBody>
-       </Table>
-     </TableContainer>
-     
-     <Modal
-     open={modalInsertar}
-     onClose={abrirCerrarModalInsertar}>
+                <TableCell>{bookW.name}</TableCell>
+                <TableCell>{bookW.author}</TableCell>
+                <TableCell>{bookW.pages}</TableCell>
+                <TableCell>{bookW.genry}</TableCell>
+
+                <TableCell>
+                  <Edit className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Editar')} />
+                  &nbsp;&nbsp;&nbsp;
+                  <Delete className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Eliminar')} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      </div>
+
+      <Modal
+        open={modalInsertar}
+        onClose={abrirCerrarModalInsertar}>
         {bodyInsertar}
-     </Modal>
+      </Modal>
 
-     <Modal
-     open={modalEditar}
-     onClose={abrirCerrarModalEditar}>
+      <Modal
+        open={modalEditar}
+        onClose={abrirCerrarModalEditar}>
         {bodyEditar}
-     </Modal>
+      </Modal>
 
-     <Modal
-     open={modalEliminar}
-     onClose={abrirCerrarModalEliminar}>
+      <Modal
+        open={modalEliminar}
+        onClose={abrirCerrarModalEliminar}>
         {bodyEliminar}
-     </Modal>
+      </Modal>
     </div>
+    </body>
+
+
   );
+  
 }
 
 export default ListaLibros;
