@@ -10,4 +10,4 @@ Esto debido a que unas dependencias estan en comflicto pero no afecta el funcion
 luego se puede iniciar normalmente con 
 ### `npm start`
 
-###Integrantes
+##Integrantes
