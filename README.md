@@ -9,3 +9,5 @@ para ignorar este error
 Esto debido a que unas dependencias estan en comflicto pero no afecta el funcionamiento
 luego se puede iniciar normalmente con 
 ### `npm start`
+
+"merge"
