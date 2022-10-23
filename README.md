@@ -28,3 +28,12 @@ Integrantes:
 3.  Libros Deseados: https://api-library-service.herokuapp.com/api/wish
 4.  Autores: https://api-library-service.herokuapp.com/api/author
 5.  Registros: https://api-library-service.herokuapp.com/api/registry
+
+### ATENCION
+Aunque la pantalla de Inicio de sesion este diseñada no presenta ningun tipo de validacion, asi que se puede iniciar sesion solo con dar click, cerrar sesion es funcional
+
+### LICENCIA
+
+Licencia Creative Commons
+Esta obra está bajo una Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional.
+https://creativecommons.org/licenses/by-nc-sa/4.0/
