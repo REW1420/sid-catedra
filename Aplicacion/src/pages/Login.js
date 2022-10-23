@@ -82,7 +82,7 @@ class Login extends Component {
 
 
 
-                    <input type="text" id="login" className="fadeIn second" name="username" placeholder="Usario" onChange={this.handleChange} />
+                    <input type="text" id="login" className="fadeIn second" name="username" placeholder="Usuario" onChange={this.handleChange} />
                     <input type="password" id="password" className="fadeIn third" name="password" placeholder="Contraseña" onChange={this.handleChange} />
                     <button className="btn btn-primary p-2 m-2" onClick={() => this.iniciarSesion()}>Iniciar Sesión</button>
 

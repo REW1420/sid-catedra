@@ -1,19 +1,13 @@
 import React, {useEffect, useState} from 'react';
-
 import './css/css.css'
 import axios from 'axios';
 import {makeStyles} from '@material-ui/core/styles';
 import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow, Modal, Button, TextField} from '@material-ui/core';
 import {Edit, Delete} from '@material-ui/icons';
-import { textAlign } from '@mui/system';
 
-
-const baseUrl='https://api-library-service.herokuapp.com/api/book'
+const baseUrl='https://api-library-service.herokuapp.com/api/wish'
 
 const useStyles = makeStyles((theme) => ({
-
- 
-
   modal: {
     position: 'absolute',
     width: 400,
@@ -26,18 +20,23 @@ const useStyles = makeStyles((theme) => ({
     transform: 'translate(-50%, -50%)'
   },
   iconos:{
-    cursor: 'pointer',
-   
-    
+    cursor: 'pointer'
   }, 
   inputMaterial:{
-    width: '100%',
-    textAlign: 'center'
+    width: '100%'
   }
 }));
 
-function ListaLibros() {
-const styles= useStyles();
+
+
+function ListaLibrosDeseados() {
+
+  //busqueda del utimo id
+
+
+ 
+
+  const styles= useStyles();
   const [data, setData]=useState([]);
   const [modalInsertar, setModalInsertar]=useState(false);
   const [modalEditar, setModalEditar]=useState(false);
@@ -54,7 +53,7 @@ const styles= useStyles();
   })
   ////////////////////////////
   
-  var url='https://api-library-service.herokuapp.com/api/book';
+  var url='https://api-library-service.herokuapp.com/api/wish';
   const [dataID, setDataID] = useState([]);//los corchetes son para especificar que la variable "data" va a recibir un objeto
     //constante con hook para capturar los datos de la petición fetch
     fetch(url)
@@ -145,14 +144,14 @@ const styles= useStyles();
 
   const bodyInsertar=(
     <div className={styles.modal}>
-      <h3 >Agregar nuevo libro</h3>
+      <h3>Agregar nuevo libro deseado deseado</h3>
       <TextField name="author" className={styles.inputMaterial} label="Autor" onChange={(e) => setAuthor(e.target.value)}/>
       <br />
       <TextField name="name" className={styles.inputMaterial} label="Titulo" onChange={(e) => setName(e.target.value)}/>
       <br />
       <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={(e) => setPages(e.target.value)}/>
       <br />
-      <TextField name="genre" className={styles.inputMaterial} label="Paginas" onChange={(e) => setGenre(e.target.value)}/>
+      <TextField name="genre" className={styles.inputMaterial} label="Genero(s)" onChange={(e) => setGenre(e.target.value)}/>
       <br /><br />
       <div align="right">
         <Button color="primary" onClick={()=>{
@@ -186,6 +185,8 @@ const styles= useStyles();
       <br />
       <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={handleChange} value={selectedBook && selectedBook.pages}/>
       <br />
+      <TextField name="genre" className={styles.inputMaterial} label="Genero(s)" onChange={handleChange} value={selectedBook && selectedBook.genre}/>
+
       <br />
       <div align="right">
         <Button color="primary" onClick={()=>peticionPut()}>Actualizar</Button>
@@ -196,7 +197,7 @@ const styles= useStyles();
 
   const bodyEliminar=(
     <div className={styles.modal}>
-      <p>Estás seguro que deseas eliminar el libro <b>{selectedBook && selectedBook.name}</b> ? </p>
+      <p>Estás seguro que deseas eliminar el libro de deseados <b>{selectedBook && selectedBook.name}</b> ? </p>
       <div align="right">
         <Button color="secondary" onClick={()=>peticionDelete()} >Sí</Button>
         <Button onClick={()=>abrirCerrarModalEliminar()}>No</Button>
@@ -208,72 +209,71 @@ const styles= useStyles();
 
 
   return (
-    <body className='body' >
-    <div className="container tablas-udb">
+
+<body className='body '>
+
+    <div className="container tablas-udb ">
       <br />
-      <Button className='btn-primary botonAgregar' onClick={() => abrirCerrarModalInsertar()}>Registrar nuevo libro</Button>
+    <Button className='btn-primary botonAgregar' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo libro deseado</Button>
       <br /><br />
 
       <div className='tablasColor'>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Titulo</TableCell>
-              <TableCell>Autor</TableCell>
-              <TableCell>Paginas</TableCell>
-              <TableCell>Genero</TableCell>
-              <TableCell>Opciones</TableCell>
+     <TableContainer>
+       <Table>
+         <TableHead>
+           <TableRow>
+             <TableCell>ID</TableCell>
+             <TableCell>Titulo</TableCell>
+             <TableCell>Autor</TableCell>
+             <TableCell>Paginas</TableCell>
+             <TableCell>Genero</TableCell>
+             <TableCell>Opciones</TableCell>
 
-            </TableRow>
-          </TableHead>
+           </TableRow>
+         </TableHead>
 
-          <TableBody>
-            {data.map(bookW => (
-              <TableRow key={bookW.id}>
+         <TableBody>
+           {data.map(bookW=>(
+             <TableRow key={bookW.id}>
                 <TableCell>{bookW.id}</TableCell>
-                <TableCell>{bookW.name}</TableCell>
-                <TableCell>{bookW.author}</TableCell>
-                <TableCell>{bookW.pages}</TableCell>
-                <TableCell>{bookW.genry}</TableCell>
-
-                <TableCell>
-                  <Edit className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Editar')} />
-                  &nbsp;&nbsp;&nbsp;
-                  <Delete className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Eliminar')} />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      </div>
-
-      <Modal
-        open={modalInsertar}
-        onClose={abrirCerrarModalInsertar}>
+               <TableCell>{bookW.name}</TableCell>
+               <TableCell>{bookW.author}</TableCell>
+               <TableCell>{bookW.pages}</TableCell>
+               <TableCell>{bookW.genre}</TableCell>
+             
+               <TableCell>
+                 <Edit className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Editar')}/>
+                 &nbsp;&nbsp;&nbsp;
+                 <Delete  className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Eliminar')}/>
+                 </TableCell>
+             </TableRow>
+           ))}
+         </TableBody>
+       </Table>
+     </TableContainer>
+     </div>
+     
+     <Modal
+     open={modalInsertar}
+     onClose={abrirCerrarModalInsertar}>
         {bodyInsertar}
-      </Modal>
+     </Modal>
 
-      <Modal
-        open={modalEditar}
-        onClose={abrirCerrarModalEditar}>
+     <Modal
+     open={modalEditar}
+     onClose={abrirCerrarModalEditar}>
         {bodyEditar}
-      </Modal>
+     </Modal>
 
-      <Modal
-        open={modalEliminar}
-        onClose={abrirCerrarModalEliminar}>
+     <Modal
+     open={modalEliminar}
+     onClose={abrirCerrarModalEliminar}>
         {bodyEliminar}
-      </Modal>
+     </Modal>
     </div>
+
     </body>
-
-
   );
-  
 }
 
-export default ListaLibros;
+export default ListaLibrosDeseados;
