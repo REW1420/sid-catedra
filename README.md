@@ -9,3 +9,15 @@ para ignorar este error
 Esto debido a que unas dependencias estan en comflicto pero no afecta el funcionamiento
 luego se puede iniciar normalmente con 
 ### `npm start`
+<<<<<<< HEAD
+=======
+
+
+Integrantes:
+
+1. William Ernesto Ramos Valladares RV200068
+2. Joaquín Alexander Hernández Acosta HA180014
+3. Carla María Alonso Bautista AB220803
+4. Daniel Enrique Funes HErnandez FH210037
+ 
+>>>>>>> William

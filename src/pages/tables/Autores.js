@@ -5,7 +5,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow, Modal, Button, TextField} from '@material-ui/core';
 import {Edit, Delete} from '@material-ui/icons';
 
-const baseUrl='https://api-library-service.herokuapp.com/api/wish'
+const baseUrl='https://api-library-service.herokuapp.com/api/author'
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -27,51 +27,45 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
-
-function ListaLibrosDeseados() {
-
-  //busqueda del utimo id
-
-
- 
-
-  const styles= useStyles();
+function Autores() {
+const styles= useStyles();
   const [data, setData]=useState([]);
   const [modalInsertar, setModalInsertar]=useState(false);
   const [modalEditar, setModalEditar]=useState(false);
   const [modalEliminar, setModalEliminar]=useState(false);
 
   const [selectedBook, setSelectedBook]=useState({
-
-    
     name: '',
-    author:'',
-    pages: '',
-    genre: ''
+    nacionality:'',
+    bornDay: '',
+    bornMoth: '',
+    bornYear: '',
     
   })
-  ////////////////////////////
-  
-  var url='https://api-library-service.herokuapp.com/api/wish';
-  const [dataID, setDataID] = useState([]);//los corchetes son para especificar que la variable "data" va a recibir un objeto
-    //constante con hook para capturar los datos de la petición fetch
-    fetch(url)
-    .then((res)=>res.json()).then((resJson)=>setDataID(resJson));
-    var lastID;
-    dataID.map((book,i) =>{
-      lastID=book.id
-    }
-    );
 
-    
-  const [name,setName]=useState("");
-  const [author,setAuthor]=useState("");
-  const [pages,setPages]=useState("");
-  const [genre,setGenre]=useState("");
+   ////////////////////////////
   
+   var url='https://api-library-service.herokuapp.com/api/author';
+   const [dataID, setDataID] = useState([]);//los corchetes son para especificar que la variable "data" va a recibir un objeto
+     //constante con hook para capturar los datos de la petición fetch
+     fetch(url)
+     .then((res)=>res.json()).then((resJson)=>setDataID(resJson));
+     var lastID;
+     dataID.map((book,i) =>{
+       lastID=book.id
+     }
+     );
+ 
+     
+   const [name,setName]=useState("");
+   const [nacionality,setNacionality]=useState("");
+   const [bornDay,setDay]=useState("");
+   const [bornMoth,setMonth]=useState("");
+   const [bornYear,setYear]=useState("");
+   
+ 
+   ///////////////////////
 
-  ///////////////////////
   const handleChange=e=>{
     const {name, value}=e.target;
     setSelectedBook(prevState=>({
@@ -100,11 +94,13 @@ function ListaLibrosDeseados() {
     await axios.put(baseUrl+"/"+selectedBook.id, selectedBook)
     .then(response=>{
       var dataNueva=data;
-      dataNueva.map(book=>{
-        if(selectedBook.id===book.id){
-          book.nombre=selectedBook.name;
-          book.lanzamiento=selectedBook.author;
-          book.empresa=selectedBook.pages;
+      dataNueva.map(author=>{
+        if(selectedBook.id===author.id){
+          author.name=selectedBook.name;
+          author.nacionality=selectedBook.nacionality;
+          author.bornDay=selectedBook.bornDay;
+          author.bornMoth=selectedBook.bornMoth;
+          author.bornYear=selectedBook.bornYear;
           
         }
       })
@@ -144,14 +140,17 @@ function ListaLibrosDeseados() {
 
   const bodyInsertar=(
     <div className={styles.modal}>
-      <h3>Agregar nuevo libro deseado deseado</h3>
-      <TextField name="author" className={styles.inputMaterial} label="Autor" onChange={(e) => setAuthor(e.target.value)}/>
+      <h3>Agregar nuevo autor</h3>
+      <TextField name="name" className={styles.inputMaterial} label="Nombre" onChange={(e) => setName(e.target.value)}/>
       <br />
-      <TextField name="name" className={styles.inputMaterial} label="Titulo" onChange={(e) => setName(e.target.value)}/>
+      <TextField name="nacionality" className={styles.inputMaterial} label="Nacionalidad" onChange={(e) => setNacionality(e.target.value)}/>
       <br />
-      <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={(e) => setPages(e.target.value)}/>
+      <TextField name="bornDay" className={styles.inputMaterial} label="Dia de nacimiento" onChange={(e) => setDay(e.target.value)}/>
       <br />
-      <TextField name="genre" className={styles.inputMaterial} label="Genero" onChange={(e) => setGenre(e.target.value)}/>
+      <TextField name="bornMoth" className={styles.inputMaterial} label="Mes de nacimiento (Formato numerico)" onChange={(e) => setMonth(e.target.value)}/>
+      <br />
+      <TextField name="bornYear" className={styles.inputMaterial} label="Año de nacimiento" onChange={(e) => setYear(e.target.value)}/>
+      <br />
       <br /><br />
       <div align="right">
         <Button color="primary" onClick={()=>{
@@ -164,12 +163,13 @@ function ListaLibrosDeseados() {
                 {
                     id: (parseInt(lastID)+1).toString(),
                     name: name,
-                    author: author,
-                    pages: pages,
-                    genre: genre   
+                    nacionality: nacionality,
+                    bornDay: bornDay,
+                    bornMoth: bornMoth,
+                    bornYear:bornYear 
                 }   
             )
-        }).then((res)=>res.json()).then(abrirCerrarModalInsertar());}} >Insertar</Button>
+        }).then((res)=>res.json()).then(abrirCerrarModalInsertar());}}>Insertar</Button>
         <Button onClick={()=>abrirCerrarModalInsertar()}>Cancelar</Button>
       </div>
     </div>
@@ -177,16 +177,17 @@ function ListaLibrosDeseados() {
 
   const bodyEditar=(
     <div className={styles.modal}>
-      <h3>Editar libro</h3>
-      <TextField name="author" className={styles.inputMaterial} label="Autor" onChange={handleChange} value={selectedBook && selectedBook.author}/>
+      <h3>Editar autor</h3>
+      <TextField name="name" className={styles.inputMaterial} label="Nombre" onChange={handleChange} value={selectedBook && selectedBook.name}/>
       <br />
-     
-      <TextField name="name" className={styles.inputMaterial} label="Titulo" onChange={handleChange} value={selectedBook && selectedBook.name}/>
+      <TextField name="nacionality" className={styles.inputMaterial} label="Nacionalidad" onChange={handleChange} value={selectedBook && selectedBook.nacionality}/>
       <br />
-      <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={handleChange} value={selectedBook && selectedBook.pages}/>
+      <TextField name="bornDay" className={styles.inputMaterial} label="Dia de nacimiento" onChange={handleChange} value={selectedBook && selectedBook.bornDay}/>
       <br />
-      <TextField name="genre" className={styles.inputMaterial} label="Genero" onChange={handleChange} value={selectedBook && selectedBook.genre}/>
-
+      <TextField name="bornMoth" className={styles.inputMaterial} label="Mes de nacimiento (Formato numerico)" onChange={handleChange} value={selectedBook && selectedBook.bornMoth}/>
+      <br />
+      <TextField name="bornYear" className={styles.inputMaterial} label="Año de nacimiento" onChange={handleChange} value={selectedBook && selectedBook.bornYear}/>
+      <br />
       <br />
       <div align="right">
         <Button color="primary" onClick={()=>peticionPut()}>Actualizar</Button>
@@ -197,7 +198,7 @@ function ListaLibrosDeseados() {
 
   const bodyEliminar=(
     <div className={styles.modal}>
-      <p>Estás seguro que deseas eliminar el libro de deseados <b>{selectedBook && selectedBook.name}</b> ? </p>
+      <p>Estás seguro que deseas eliminar la consola <b>{selectedBook && selectedBook.name}</b> ? </p>
       <div align="right">
         <Button color="secondary" onClick={()=>peticionDelete()} >Sí</Button>
         <Button onClick={()=>abrirCerrarModalEliminar()}>No</Button>
@@ -210,24 +211,22 @@ function ListaLibrosDeseados() {
 
   return (
 
-<body className='body '>
-
+    <body className='body'>
     <div className="container tablas-udb ">
       <br />
-    <Button className='btn-primary botonAgregar' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo libro deseado</Button>
+    <Button className='btn-primary botonAgregar' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo autor</Button>
       <br /><br />
-
       <div className='tablasColor'>
      <TableContainer>
        <Table>
          <TableHead>
            <TableRow>
-             <TableCell>ID</TableCell>
-             <TableCell>Titulo</TableCell>
-             <TableCell>Autor</TableCell>
-             <TableCell>Paginas</TableCell>
-             <TableCell>Genero</TableCell>
+           <TableCell>ID</TableCell>
+             <TableCell>Nombre</TableCell>
+             <TableCell>Nacionalidad</TableCell>
+             <TableCell>Fecha de nacimiento</TableCell>
              <TableCell>Opciones</TableCell>
+          
 
            </TableRow>
          </TableHead>
@@ -237,9 +236,8 @@ function ListaLibrosDeseados() {
              <TableRow key={bookW.id}>
                 <TableCell>{bookW.id}</TableCell>
                <TableCell>{bookW.name}</TableCell>
-               <TableCell>{bookW.author}</TableCell>
-               <TableCell>{bookW.pages}</TableCell>
-               <TableCell>{bookW.genre}</TableCell>
+               <TableCell>{bookW.nacionality}</TableCell>
+               <TableCell>{bookW.bornDay}/{bookW.bornMoth}/{bookW.bornYear}</TableCell>
              
                <TableCell>
                  <Edit className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Editar')}/>
@@ -252,7 +250,6 @@ function ListaLibrosDeseados() {
        </Table>
      </TableContainer>
      </div>
-     
      <Modal
      open={modalInsertar}
      onClose={abrirCerrarModalInsertar}>
@@ -271,9 +268,8 @@ function ListaLibrosDeseados() {
         {bodyEliminar}
      </Modal>
     </div>
-
     </body>
   );
 }
 
-export default ListaLibrosDeseados;
+export default Autores;
