@@ -151,7 +151,7 @@ function ListaLibrosDeseados() {
       <br />
       <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={(e) => setPages(e.target.value)}/>
       <br />
-      <TextField name="genre" className={styles.inputMaterial} label="Genero" onChange={(e) => setGenre(e.target.value)}/>
+      <TextField name="genre" className={styles.inputMaterial} label="Genero(s)" onChange={(e) => setGenre(e.target.value)}/>
       <br /><br />
       <div align="right">
         <Button color="primary" onClick={()=>{
@@ -185,7 +185,7 @@ function ListaLibrosDeseados() {
       <br />
       <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={handleChange} value={selectedBook && selectedBook.pages}/>
       <br />
-      <TextField name="genre" className={styles.inputMaterial} label="Genero" onChange={handleChange} value={selectedBook && selectedBook.genre}/>
+      <TextField name="genre" className={styles.inputMaterial} label="Genero(s)" onChange={handleChange} value={selectedBook && selectedBook.genre}/>
 
       <br />
       <div align="right">

@@ -152,7 +152,7 @@ const styles= useStyles();
       <br />
       <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={(e) => setPages(e.target.value)}/>
       <br />
-      <TextField name="genre" className={styles.inputMaterial} label="Paginas" onChange={(e) => setGenre(e.target.value)}/>
+      <TextField name="genre" className={styles.inputMaterial} label="Genero(s)" onChange={(e) => setGenre(e.target.value)}/>
       <br /><br />
       <div align="right">
         <Button color="primary" onClick={()=>{
@@ -186,6 +186,7 @@ const styles= useStyles();
       <br />
       <TextField name="pages" className={styles.inputMaterial} label="Paginas" onChange={handleChange} value={selectedBook && selectedBook.pages}/>
       <br />
+      <TextField name="genre" className={styles.inputMaterial} label="Genero(s)" onChange={handleChange} value={selectedBook && selectedBook.genre}/>
       <br />
       <div align="right">
         <Button color="primary" onClick={()=>peticionPut()}>Actualizar</Button>
@@ -236,7 +237,7 @@ const styles= useStyles();
                 <TableCell>{bookW.name}</TableCell>
                 <TableCell>{bookW.author}</TableCell>
                 <TableCell>{bookW.pages}</TableCell>
-                <TableCell>{bookW.genry}</TableCell>
+                <TableCell>{bookW.genre}</TableCell>
 
                 <TableCell>
                   <Edit className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Editar')} />

@@ -42,7 +42,7 @@ export default function Registro() {
         
          
             
-              <input type="text" id="login" className="fadeIn second"  placeholder="Usario"   onChange={(e) => setUser(e.target.value)}/>
+              <input type="text" id="login" className="fadeIn second"  placeholder="Usuario"   onChange={(e) => setUser(e.target.value)}/>
               <input type="text" id="login" className="fadeIn second" placeholder="Email"   onChange={(e) => setEmail(e.target.value)}/>
               <input type="password" id="password" className="fadeIn third"  placeholder="Contraseña"   />
               <input type="password" id="password" claclassNamess="fadeIn third"  placeholder="Repetir ontraseña"   onChange={(e) => setPassword2(e.target.value)}/>
