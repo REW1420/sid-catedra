@@ -9,8 +9,7 @@ para ignorar este error
 Esto debido a que unas dependencias estan en comflicto pero no afecta el funcionamiento
 luego se puede iniciar normalmente con 
 ### `npm start`
-<<<<<<< HEAD
-=======
+
 
 
 Integrantes:
@@ -21,6 +20,7 @@ Integrantes:
 4. Daniel Enrique Funes HErnandez FH210037
 <<<<<<< HEAD
  
+<<<<<<< HEAD
 >>>>>>> William
 =======
 5. Eilyn Azucena Flores Recinos FR201223
@@ -35,3 +35,6 @@ Integrantes:
 4.  Autores: https://api-library-service.herokuapp.com/api/author
 5.  Registros: https://api-library-service.herokuapp.com/api/registry
 >>>>>>> William
+=======
+
+>>>>>>> 1e4fb8fde3f46fe4d08a1f95cbe8f2c301478b0f
