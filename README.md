@@ -9,8 +9,7 @@ para ignorar este error
 Esto debido a que unas dependencias estan en comflicto pero no afecta el funcionamiento
 luego se puede iniciar normalmente con 
 ### `npm start`
-<<<<<<< HEAD
-=======
+
 
 
 Integrantes:
@@ -20,4 +19,4 @@ Integrantes:
 3. Carla María Alonso Bautista AB220803
 4. Daniel Enrique Funes HErnandez FH210037
  
->>>>>>> William
+
