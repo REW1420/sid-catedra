@@ -18,5 +18,5 @@ Integrantes:
 3. Carla María Alonso Bautista AB220803
 4. Daniel Enrique Funes HErnandez FH210037
  
- #Enlaces de interes
+ # Enlaces de interes
  1. Link de Trello: https://trello.com/invite/b/d5RShHiU/ATTIdfc6f5bddc8fffe8345e1186edd7a76580C7C1AF/gestion-de-libros
