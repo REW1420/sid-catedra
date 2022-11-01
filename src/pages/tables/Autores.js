@@ -4,6 +4,7 @@ import axios from 'axios';
 import {makeStyles} from '@material-ui/core/styles';
 import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow, Modal, Button, TextField} from '@material-ui/core';
 import {Edit, Delete} from '@material-ui/icons';
+import Nvar from '../Nvar';
 
 const baseUrl='https://api-library-service.herokuapp.com/api/author'
 
@@ -211,64 +212,67 @@ const styles= useStyles();
 
   return (
 
+
+    <><Nvar />
+    
     <body className='body'>
-    <div className="container tablas-udb ">
-      <br />
-    <Button className='btn-primary botonAgregar' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo autor</Button>
-      <br /><br />
-      <div className='tablasColor'>
-     <TableContainer>
-       <Table>
-         <TableHead>
-           <TableRow>
-           <TableCell>ID</TableCell>
-             <TableCell>Nombre</TableCell>
-             <TableCell>Nacionalidad</TableCell>
-             <TableCell>Fecha de nacimiento</TableCell>
-             <TableCell>Opciones</TableCell>
-          
+      <div className="container tablas-udb ">
+        <br />
+        <Button className='btn-primary botonAgregar' onClick={() => abrirCerrarModalInsertar()}>Registrar nuevo autor</Button>
+        <br /><br />
+        <div className='tablasColor'>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Nombre</TableCell>
+                  <TableCell>Nacionalidad</TableCell>
+                  <TableCell>Fecha de nacimiento</TableCell>
+                  <TableCell>Opciones</TableCell>
 
-           </TableRow>
-         </TableHead>
 
-         <TableBody>
-           {data.map(bookW=>(
-             <TableRow key={bookW.id}>
-                <TableCell>{bookW.id}</TableCell>
-               <TableCell>{bookW.name}</TableCell>
-               <TableCell>{bookW.nacionality}</TableCell>
-               <TableCell>{bookW.bornDay}/{bookW.bornMoth}/{bookW.bornYear}</TableCell>
-             
-               <TableCell>
-                 <Edit className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Editar')}/>
-                 &nbsp;&nbsp;&nbsp;
-                 <Delete  className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Eliminar')}/>
-                 </TableCell>
-             </TableRow>
-           ))}
-         </TableBody>
-       </Table>
-     </TableContainer>
-     </div>
-     <Modal
-     open={modalInsertar}
-     onClose={abrirCerrarModalInsertar}>
-        {bodyInsertar}
-     </Modal>
+                </TableRow>
+              </TableHead>
 
-     <Modal
-     open={modalEditar}
-     onClose={abrirCerrarModalEditar}>
-        {bodyEditar}
-     </Modal>
+              <TableBody>
+                {data.map(bookW => (
+                  <TableRow key={bookW.id}>
+                    <TableCell>{bookW.id}</TableCell>
+                    <TableCell>{bookW.name}</TableCell>
+                    <TableCell>{bookW.nacionality}</TableCell>
+                    <TableCell>{bookW.bornDay}/{bookW.bornMoth}/{bookW.bornYear}</TableCell>
 
-     <Modal
-     open={modalEliminar}
-     onClose={abrirCerrarModalEliminar}>
-        {bodyEliminar}
-     </Modal>
-    </div>
-    </body>
+                    <TableCell>
+                      <Edit className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Editar')} />
+                      &nbsp;&nbsp;&nbsp;
+                      <Delete className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Eliminar')} />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+        <Modal
+          open={modalInsertar}
+          onClose={abrirCerrarModalInsertar}>
+          {bodyInsertar}
+        </Modal>
+
+        <Modal
+          open={modalEditar}
+          onClose={abrirCerrarModalEditar}>
+          {bodyEditar}
+        </Modal>
+
+        <Modal
+          open={modalEliminar}
+          onClose={abrirCerrarModalEliminar}>
+          {bodyEliminar}
+        </Modal>
+      </div>
+    </body></>
   );
 }
 

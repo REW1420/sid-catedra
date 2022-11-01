@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './css/css.css'
 import axios from 'axios';
+import Nvar from '../Nvar';
 import {makeStyles} from '@material-ui/core/styles';
 import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow, Modal, Button, TextField} from '@material-ui/core';
 import {Edit, Delete} from '@material-ui/icons';
@@ -208,71 +209,73 @@ function ListaLibrosDeseados() {
   )
 
 
-  return (
+  return ( 
 
-<body className='body '>
+    <><Nvar />
+    
+    <body className='body '>
 
-    <div className="container tablas-udb ">
-      <br />
-    <Button className='btn-primary botonAgregar' onClick={()=>abrirCerrarModalInsertar()}>Registrar nuevo libro deseado</Button>
-      <br /><br />
+      <div className="container tablas-udb ">
+        <br />
+        <Button className='btn-primary botonAgregar' onClick={() => abrirCerrarModalInsertar()}>Registrar nuevo libro deseado</Button>
+        <br /><br />
 
-      <div className='tablasColor'>
-     <TableContainer>
-       <Table>
-         <TableHead>
-           <TableRow>
-             <TableCell>ID</TableCell>
-             <TableCell>Titulo</TableCell>
-             <TableCell>Autor</TableCell>
-             <TableCell>Paginas</TableCell>
-             <TableCell>Genero</TableCell>
-             <TableCell>Opciones</TableCell>
+        <div className='tablasColor'>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Titulo</TableCell>
+                  <TableCell>Autor</TableCell>
+                  <TableCell>Paginas</TableCell>
+                  <TableCell>Genero</TableCell>
+                  <TableCell>Opciones</TableCell>
 
-           </TableRow>
-         </TableHead>
+                </TableRow>
+              </TableHead>
 
-         <TableBody>
-           {data.map(bookW=>(
-             <TableRow key={bookW.id}>
-                <TableCell>{bookW.id}</TableCell>
-               <TableCell>{bookW.name}</TableCell>
-               <TableCell>{bookW.author}</TableCell>
-               <TableCell>{bookW.pages}</TableCell>
-               <TableCell>{bookW.genre}</TableCell>
-             
-               <TableCell>
-                 <Edit className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Editar')}/>
-                 &nbsp;&nbsp;&nbsp;
-                 <Delete  className={styles.iconos} onClick={()=>seleccionarConsola(bookW, 'Eliminar')}/>
-                 </TableCell>
-             </TableRow>
-           ))}
-         </TableBody>
-       </Table>
-     </TableContainer>
-     </div>
-     
-     <Modal
-     open={modalInsertar}
-     onClose={abrirCerrarModalInsertar}>
-        {bodyInsertar}
-     </Modal>
+              <TableBody>
+                {data.map(bookW => (
+                  <TableRow key={bookW.id}>
+                    <TableCell>{bookW.id}</TableCell>
+                    <TableCell>{bookW.name}</TableCell>
+                    <TableCell>{bookW.author}</TableCell>
+                    <TableCell>{bookW.pages}</TableCell>
+                    <TableCell>{bookW.genre}</TableCell>
 
-     <Modal
-     open={modalEditar}
-     onClose={abrirCerrarModalEditar}>
-        {bodyEditar}
-     </Modal>
+                    <TableCell>
+                      <Edit className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Editar')} />
+                      &nbsp;&nbsp;&nbsp;
+                      <Delete className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Eliminar')} />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
 
-     <Modal
-     open={modalEliminar}
-     onClose={abrirCerrarModalEliminar}>
-        {bodyEliminar}
-     </Modal>
-    </div>
+        <Modal
+          open={modalInsertar}
+          onClose={abrirCerrarModalInsertar}>
+          {bodyInsertar}
+        </Modal>
 
-    </body>
+        <Modal
+          open={modalEditar}
+          onClose={abrirCerrarModalEditar}>
+          {bodyEditar}
+        </Modal>
+
+        <Modal
+          open={modalEliminar}
+          onClose={abrirCerrarModalEliminar}>
+          {bodyEliminar}
+        </Modal>
+      </div>
+
+    </body></>
   );
 }
 

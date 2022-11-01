@@ -6,7 +6,6 @@ import Registro from './pages/Registro';
 import ListaLibros from './pages/tables/ListaLibros';
 import ListaLibrosDeseados  from './pages/tables/ListaLibrosDeseados';
 import Autores from './pages/tables/Autores';
-import Nvar from './pages/Nvar';
 import { BusquedaLibros } from './pages/tables/BusquedaLibros';
 
 
@@ -18,15 +17,14 @@ root.render(
   
 <BrowserRouter>
 
-<Nvar></Nvar>
+
 <Routes>
 
 <Route path="/" element={<Login/>}/>
 <Route path="/registro" element={<Registro/>}/>
 <Route path="/lista" element={<ListaLibros/>}/>
 <Route path="/registro-libros-deseados" element={<ListaLibrosDeseados/>}/>
-<Route path="/filtro-libros" element={<BusquedaLibros/>}/>
-<Route path="/autores" element={<Autores/>}/>
+
 
 </Routes>
 
