@@ -145,7 +145,7 @@ function ListaLibrosDeseados() {
 
   const bodyInsertar=(
     <div className={styles.modal}>
-      <h3>Agregar nuevo libro deseado deseado</h3>
+      <h3 id='titulo'>Agregar nuevo libro deseado deseado</h3>
       <TextField name="author" className={styles.inputMaterial} label="Autor" onChange={(e) => setAuthor(e.target.value)}/>
       <br />
       <TextField name="name" className={styles.inputMaterial} label="Titulo" onChange={(e) => setName(e.target.value)}/>
@@ -156,6 +156,12 @@ function ListaLibrosDeseados() {
       <br /><br />
       <div align="right">
         <Button color="primary" onClick={()=>{
+         
+         if(author==='' && name === '' && pages === '' && genre === ''){
+          document.getElementById('titulo').innerHTML="<h3 className='text-danger'>Datos vacios</h3>"
+        }else if(author==='' || name === '' || pages === '' || genre === ''){
+          document.getElementById('titulo').innerHTML="<h3 className='text-danger'>Rellene todos los datos</h3>"
+        }else if(parseInt(pages)>=0){
           fetch(url,{
             method: 'POST',
             headers: {
@@ -170,7 +176,11 @@ function ListaLibrosDeseados() {
                     genre: genre   
                 }   
             )
-        }).then((res)=>res.json()).then(abrirCerrarModalInsertar());}} >Insertar</Button>
+        }).then((res)=>res.json()).then(abrirCerrarModalInsertar());
+
+        }else {
+          document.getElementById('titulo').innerHTML="<h3 className='text-danger'>Las paginas deben ser numeros</h3>"
+        }}} >Insertar</Button>
         <Button onClick={()=>abrirCerrarModalInsertar()}>Cancelar</Button>
       </div>
     </div>

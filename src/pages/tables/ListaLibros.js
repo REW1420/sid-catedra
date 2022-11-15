@@ -55,8 +55,8 @@ const styles= useStyles();
   ////////////////////////////
   
   var url='https://api-library-service.herokuapp.com/api/book';
-  const [dataID, setDataID] = useState([]);//los corchetes son para especificar que la variable "data" va a recibir un objeto
-    //constante con hook para capturar los datos de la petición fetch
+  const [dataID, setDataID] = useState([]);
+  
     fetch(url)
     .then((res)=>res.json()).then((resJson)=>setDataID(resJson));
     var lastID;
@@ -128,8 +128,8 @@ const styles= useStyles();
     setModalEliminar(!modalEliminar);
   }
 
-  const seleccionarConsola=(consola, caso)=>{
-    setSelectedBook(consola);
+  const seleccionarLibro=(libro, caso)=>{
+    setSelectedBook(libro);
     (caso==='Editar')?abrirCerrarModalEditar():abrirCerrarModalEliminar()
   }
 
@@ -139,7 +139,7 @@ const styles= useStyles();
 
   const bodyInsertar=(
     <div className={styles.modal}>
-      <h3 >Agregar nuevo libro</h3>
+      <h3 id='titulo'>Agregar nuevo libro</h3>
       <TextField name="author" className={styles.inputMaterial} label="Autor" onChange={(e) => setAuthor(e.target.value)}/>
       <br />
       <TextField name="name" className={styles.inputMaterial} label="Titulo" onChange={(e) => setName(e.target.value)}/>
@@ -150,21 +150,32 @@ const styles= useStyles();
       <br /><br />
       <div align="right">
         <Button color="primary" onClick={()=>{
-          fetch(url,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify(
-                {
-                    id: (parseInt(lastID)+1).toString(),
-                    name: name,
-                    author: author,
-                    pages: pages,
-                    genre: genre   
-                }   
-            )
-        }).then((res)=>res.json()).then(abrirCerrarModalInsertar());}} >Insertar</Button>
+
+          if(author==='' && name === '' && pages === '' && genre === ''){
+            document.getElementById('titulo').innerHTML="<h3 className='text-danger'>Datos vacios</h3>"
+          }else if(author==='' || name === '' || pages === '' || genre === ''){
+            document.getElementById('titulo').innerHTML="<h3 className='text-danger'>Rellene todos los datos</h3>"
+          }else if(parseInt(pages)>=0){
+            fetch(url,{
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+                },
+              body: JSON.stringify(
+                  {
+                      id: (parseInt(lastID)+1).toString(),
+                      name: name,
+                      author: author,
+                      pages: pages,
+                      genre: genre   
+                  }   
+              )
+          }).then((res)=>res.json()).then(abrirCerrarModalInsertar());
+
+          }else {
+            document.getElementById('titulo').innerHTML="<h3 className='text-danger'>Las paginas deben ser numeros</h3>"
+          }
+          }} >Insertar</Button>
         <Button onClick={()=>abrirCerrarModalInsertar()}>Cancelar</Button>
       </div>
     </div>
@@ -239,9 +250,9 @@ const styles= useStyles();
                     <TableCell>{bookW.genre}</TableCell>
 
                     <TableCell>
-                      <Edit className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Editar')} />
+                      <Edit className={styles.iconos} onClick={() => seleccionarLibro(bookW, 'Editar')} />
                       &nbsp;&nbsp;&nbsp;
-                      <Delete className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Eliminar')} />
+                      <Delete className={styles.iconos} onClick={() => seleccionarLibro(bookW, 'Eliminar')} />
                     </TableCell>
                   </TableRow>
                 ))}

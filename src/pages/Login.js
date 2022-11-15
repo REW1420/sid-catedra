@@ -41,9 +41,7 @@ class Login extends Component {
         window.location.href="./registro"
     }
 
-    google(){
-        window.location.href="./google-login"
-    }
+    
 
 
     iniciarSesion=async()=>{

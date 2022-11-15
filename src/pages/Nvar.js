@@ -9,7 +9,7 @@ class Nvar extends Component {
     state = { Component } 
 
     cerrarSesion=()=>{
-        cookies.remove('id', {path: "/"});
+      
         cookies.remove('user', {path: "/"});
         cookies.remove('email', {path: "/"});
         
@@ -33,13 +33,7 @@ class Nvar extends Component {
         <a className="nav-link" aria-current="page" href={'./registro-libros-deseados'} style={{color: "white"}}>Libros deseados</a>
         </li>
 
-        <li className="nav-item">
-        <a className="nav-link" aria-current="page" href={'./autores'} style={{color: "white"}}>Autores</a>
-        </li>
-
-        <li className="nav-item">
-        <a className="nav-link" aria-current="page" href={'./filtro-libros'} style={{color: "white"}}>Filtrar libros</a>
-        </li>
+       
         
     
     <button type="button" className="btn btn-outline-danger " onClick={()=>this.cerrarSesion()} style={{color: "white"}}>Cerrar Sesion</button>

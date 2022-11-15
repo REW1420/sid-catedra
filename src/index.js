@@ -5,8 +5,7 @@ import Login from './pages/Login';
 import Registro from './pages/Registro';
 import ListaLibros from './pages/tables/ListaLibros';
 import ListaLibrosDeseados  from './pages/tables/ListaLibrosDeseados';
-import Autores from './pages/tables/Autores';
-import { BusquedaLibros } from './pages/tables/BusquedaLibros';
+
 
 
 
