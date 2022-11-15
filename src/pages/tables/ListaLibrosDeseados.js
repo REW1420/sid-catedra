@@ -134,8 +134,8 @@ function ListaLibrosDeseados() {
     setModalEliminar(!modalEliminar);
   }
 
-  const seleccionarConsola=(consola, caso)=>{
-    setSelectedBook(consola);
+  const selecionarLibro=(libro, caso)=>{
+    setSelectedBook(libro);
     (caso==='Editar')?abrirCerrarModalEditar():abrirCerrarModalEliminar()
   }
 
@@ -255,9 +255,9 @@ function ListaLibrosDeseados() {
                     <TableCell>{bookW.genre}</TableCell>
 
                     <TableCell>
-                      <Edit className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Editar')} />
+                      <Edit className={styles.iconos} onClick={() => selecionarLibro(bookW, 'Editar')} />
                       &nbsp;&nbsp;&nbsp;
-                      <Delete className={styles.iconos} onClick={() => seleccionarConsola(bookW, 'Eliminar')} />
+                      <Delete className={styles.iconos} onClick={() => selecionarLibro(bookW, 'Eliminar')} />
                     </TableCell>
                   </TableRow>
                 ))}

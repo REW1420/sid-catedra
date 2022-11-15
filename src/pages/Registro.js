@@ -49,15 +49,34 @@ export default function Registro() {
              
               <input type="password" id="password2" className="fadeIn third"  placeholder="Repetir contraseña"   onChange={(e) => setPassword2(e.target.value)} required/>
               <button className="btn btn-primary p-2 m-2" onClick={()=>{
-                if((user == "") || (email == "") || (password1 == "") || (password2 == "")){
+                
+                const reE = /\S+@\S+\.\S+/
+                const reP = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
+                 var valido = false
+                 var valido2 = false
+
+                if(reE.test(email)){
+                  valido = true
+                }
+                if(reP.test(password1)){
+                  valido2=true
+                }
+
+                if((user === "") || (email === "") || (password1 === "") || (password2 === "")){
 
                   alert('Porfavor llenar todos los datos')
 
-               } else if(password1 != password2){
+               } else if ( valido === false){
+                alert('Ingreses un correo valido')
+              }else if(valido2 === false){
+                alert('La contraseña debe tener 8 a 16 caracteres, Mayusculas y minusculas y un número')
+              }
+              else if(password1 !== password2){
                   
                   alert('Las contraseñas no coinciden')
 
-                }else{
+                }
+                else{
                   fetch(url,{
                     method: 'POST',
                     headers: {
@@ -73,6 +92,9 @@ export default function Registro() {
                     )
                 }).then((res)=>res.json()).then((resJson)=>alert(resJson.message)).then(()=>window.location.href="./");
                 }
+                
+
+               
        ;} }>Registrarse</button>
             
         
